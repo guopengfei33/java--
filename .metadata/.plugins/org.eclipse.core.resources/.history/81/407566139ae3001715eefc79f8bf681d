@@ -1,0 +1,15 @@
+package com.gpf.esoracle;
+
+/**
+ *  此类  将查询到的数据添加到ES缓存中
+ * @author guopengfei
+ * @since 2017/12/18
+ * @version 1.0
+ *
+ */
+public class JDBCToES {
+
+	public void putIndexBulk(){
+		
+	}
+}

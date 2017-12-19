@@ -1,0 +1,17 @@
+package com.gpf.esoracle;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class JDBCTest {
+	public static void main(String[] args) {
+		try {
+			JDBCUtil.readDataByPage("T_SB_ZWYC_DXD", 1000, "D://data.json",
+					"index", "type");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

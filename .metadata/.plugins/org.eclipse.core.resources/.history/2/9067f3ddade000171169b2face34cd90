@@ -1,0 +1,44 @@
+package com.gpf.esTest;
+
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.query.QueryBuilder;
+
+public class ElasticsearchUtils {
+
+	private Client client;
+
+	public ElasticsearchUtils(String clusterName, String ipAddress) {
+		Settings settings = ImmutableSettings
+				.settingsBuilder()
+				// 设置集群名称
+				.put("cluster.name", clusterName)
+				.put("client.transport.ignore_cluster_name", false)
+				.put("node.client", true).put("client.transport.sniff", true)
+				.build();
+		client = new TransportClient(settings)
+				.addTransportAddress(new InetSocketTransportAddress(ipAddress,
+						9200));// 此处端口号为9300
+	}
+
+	public void createIndex(String indexName, String typeName, String id,
+			String jsonData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public SearchResponse searcher(String indexName, String typeName,
+			QueryBuilder queryBuilder) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateIndex(String indexName, String typeName, String id,
+			String jsonData) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,15 @@
+package com.gpf.esoracle;
+
+public class JDBCTest {
+	public class Main {
+	    public static void main(String[] args) {
+	        try {
+	            JDBCUtil.readDataByPage("TABLE_NAME",1000,"D://data.json","index","type");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+}

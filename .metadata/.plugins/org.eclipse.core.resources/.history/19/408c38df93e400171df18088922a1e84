@@ -1,0 +1,150 @@
+package com.gpf.esoracle;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * 为 JDBC 的多线程查询数据
+ * 
+ * @author 郭鹏飞
+ * @since 2017/12/18 15.27
+ *
+ */
+public class JDBCThread {
+
+	/*
+	 * 定义一个方法进行(version1) 对总的数据/pages 进行开启若干个进程
+	 */
+	public static void muilQueryForThread(final String tablename,
+			final int num, final int page) {
+		// 进行条数的获取
+		final int start = num * page;
+		final int end = (num + 1) * page;
+		new Thread(new Runnable() { // 内部类
+					public void run() {
+						// 获取到数据库的连接
+						Connection connection = JDBCUtil.jdbcCon();
+						//
+						if (connection != null) {
+							Long startTime = System.currentTimeMillis();// 开始时间
+							// 执行查询
+							PreparedStatement sta;
+							try {
+								sta = connection
+										.prepareStatement("select * from(select rownum as rn,t.obj_id,t.sbbm,t.ssds,t.ywdw from "
+												+ tablename
+												+ " t ) where rn >= "
+												+ start
+												+ " and rn < " + end);
+
+								ResultSet rs = sta.executeQuery();
+								// 获取数据列表
+								List<Map> data = new ArrayList();
+								// 获取到列名
+								List<String> columnLabels = JDBCUtil
+										.getColumnLabels(rs);
+
+								// 进行数据的封装
+								Map<String, Object> map = null;
+								while (rs.next()) {
+									map = new HashMap<String, Object>();
+
+									for (String columnLabel : columnLabels) {
+										Object value = rs
+												.getObject(columnLabel);
+										map.put(columnLabel.toLowerCase(),
+												value);
+									}
+									data.add(map);
+								}
+								System.out.println("map :" + data.size()
+										+ "this----" + this);
+								sta.close();
+								connection.close();
+								Long end = System.currentTimeMillis();
+								System.out.println(this + " -------- "
+										+ "   开始时间:" + startTime + "  结束时间:"
+										+ end + "  用时:" + (end - startTime)
+										+ "ms");
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
+
+						}
+					}
+				}).start();
+	}
+
+	/**
+	 * 开启固定的线程每个线程处理count/线程数
+	 * 
+	 * @version 2
+	 * @param tablename
+	 * @param queryNum
+	 * @param page
+	 */
+	public static void muilQueryForThread2(final String tablename,
+			double queryNum, final int page, double threadNum) {
+		int threadNumI = (int) threadNum;
+		final int queryNumI = (int) queryNum;
+		final CountDownLatch cdl = new CountDownLatch(threadNumI);
+		long starttime = System.currentTimeMillis();
+		for (int k = 1; k <= threadNumI; k++) {
+			// 判断需几次查询
+			final double queryCount = Math.ceil(queryNum
+					/ Double.parseDouble(String.valueOf(page)));
+			final int index = k-1;
+			System.out.println(k-1);
+			// 使用匿名内部类进行多线程的处理
+			new Thread(new Runnable() {
+				public void run() {
+					// 定义存放数据的集合
+					List<Map> data = new ArrayList();
+					List<String> list = new ArrayList<String>();
+					// 获取JDBC连接
+					Connection connection = JDBCUtil.jdbcCon();
+					Statement st = null;
+					// 定义SQL
+
+					// 获取到Statement
+					try {
+						st = connection.createStatement();
+						int start = 0;
+						int end = 0;
+						for (int i = 0; i < queryCount; i++) {
+							start = (int) (index * queryCount * queryNumI);
+							end = (int) ((index + 1) * queryCount * queryNumI);
+							System.out.println("start :" + start + "---end :" + end);
+							st.execute("select * from(select rownum as rn,t.obj_id,t.sbbm,t.ssds,t.ywdw from "
+									+ tablename + " t ) where rn >= " + start +" and rn < " + end);
+							//进行执行语句
+							ResultSet rs = st.getResultSet();
+							List<String> columnLabels = JDBCUtil.getColumnLabels(rs);
+							
+							Map<String, Object> map = null;
+							while (rs.next()) {
+								map = new HashMap<String, Object>();
+								for (String columnLabel : columnLabels) {
+									Object value = rs.getObject(columnLabel);
+									map.put(columnLabel.toLowerCase(), value);
+								}
+								data.add(map);
+							}
+						}
+						JDBCUtil.writeTable(data,"cxtj_gt222","gt222","D://data_dxd2.json",1);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		}
+	}
+}

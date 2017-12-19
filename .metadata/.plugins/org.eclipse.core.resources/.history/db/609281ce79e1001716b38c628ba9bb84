@@ -1,0 +1,26 @@
+package com.gpf.esoracle;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class JDBCTest {
+	public static void main(String[] args) {
+		try {
+			JDBCUtil.readDataByPage("T_SB_ZWYC_xl", 100000, "D://data.json",
+					"cxtj_xl", "xl");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*public static void main(String[] args) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("1", "bb");
+        map.put("2", "cc");
+        map.put("3", "dd");
+        JSONObject jsonObject = JSONObject.fromObject(map);
+        System.out.println(jsonObject);
+    }*/
+}

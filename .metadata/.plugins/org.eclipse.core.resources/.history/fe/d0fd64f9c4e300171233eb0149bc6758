@@ -1,0 +1,10 @@
+package com.gpf.esoracle;
+
+/**
+ * 为 JDBC 的多线程查询数据
+ * @author Administrator
+ *
+ */
+public class JDBCThread {
+
+}

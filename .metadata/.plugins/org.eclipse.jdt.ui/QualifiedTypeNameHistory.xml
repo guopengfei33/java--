@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.mongodb.ServerAddress"/>
+<fullyQualifiedTypeName name="com.mongodb.MongoClient"/>
+<fullyQualifiedTypeName name="com.mongodb.MongoCredential"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.mongodb.client.MongoDatabase"/>
+<fullyQualifiedTypeName name="org.bson.Document"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.PutMethod"/>
+<fullyQualifiedTypeName name="java.util.UUID"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.PostMethod"/>
+<fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.RequestEntity"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.StringRequestEntity"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.gpf.testES.Student"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.GetMethod"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.HttpClient"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.methods.DeleteMethod"/>
+<fullyQualifiedTypeName name="org.apache.commons.httpclient.params.HttpMethodParams"/>
+<fullyQualifiedTypeName name="org.elasticsearch.common.settings.Settings"/>
+<fullyQualifiedTypeName name="org.elasticsearch.action.update.UpdateRequest"/>
+<fullyQualifiedTypeName name="org.elasticsearch.common.transport.InetSocketTransportAddress"/>
+<fullyQualifiedTypeName name="org.elasticsearch.client.Client"/>
+<fullyQualifiedTypeName name="org.elasticsearch.common.network.InetAddresses"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="net.sf.json.util.JSONUtils"/>
+<fullyQualifiedTypeName name="net.sf.json.JSONObject"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.lang.Float"/>
+<fullyQualifiedTypeName name="java.lang.Double"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.gpf.esoracle.JDBCUtil"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+</qualifiedTypeNameHistroy>

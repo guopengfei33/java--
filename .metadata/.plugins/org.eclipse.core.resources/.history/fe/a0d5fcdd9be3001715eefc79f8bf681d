@@ -1,0 +1,34 @@
+package com.gpf.esoracle;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.PutMethod;
+import org.apache.commons.httpclient.methods.RequestEntity;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+
+/**
+ *  此类  将查询到的数据添加到ES缓存中
+ * @author guopengfei
+ * @since 2017/12/18
+ * @version 1.0
+ *
+ */
+public class JDBCToES {
+
+	/**
+	 * 进行批量的插入数据
+	 * @param sb 拼接好的批量插入索引的StringBuffer
+	 */
+	public static boolean putIndexBulk(StringBuffer sb){
+		//获取到httpClient
+		HttpClient client = new HttpClient();
+		
+		//获取到方法  传入kibana的URL
+		PostMethod postMethod = new PostMethod("http://127.0.0.1:9200");
+		
+		//设置请求的requestEntity
+		RequestEntity requestEntity = new StringRequestEntity();
+		postMethod.setRequestEntity(requestEntity);;
+		return false;
+	}
+}

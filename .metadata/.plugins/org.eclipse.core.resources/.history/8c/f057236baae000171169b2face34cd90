@@ -1,0 +1,9 @@
+package com.gpf.esTest;
+
+public class EsTest {
+
+	public static void main(String[] args) {
+		//创建对象,设置集群名称和ip地址
+		
+	}
+}

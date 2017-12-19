@@ -1,0 +1,10 @@
+package com.gpf.esoracle;
+
+/**
+ *  此类  将查询到的数据添加到ES缓存中
+ * @author Administrator
+ *
+ */
+public class JDBCToES {
+
+}

@@ -1,0 +1,30 @@
+package com.gpf.esoracle;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class JDBCTest {
+	public static void main(String[] args) {
+		try {
+			long starttime=System.currentTimeMillis();
+			JDBCUtil.readDataByPage("T_SB_ZWYC_GT", 442552, "D://data_GT2.json",
+					"cxtj_gt", "gt");
+			long endTime=System.currentTimeMillis();
+			
+			System.out.println("花费时间为:" + (endTime - starttime));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*public static void main(String[] args) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("1", "bb");
+        map.put("2", "cc");
+        map.put("3", "dd");
+        JSONObject jsonObject = JSONObject.fromObject(map);
+        System.out.println(jsonObject);
+    }*/
+}

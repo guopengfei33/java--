@@ -1,0 +1,52 @@
+package com.gpf.esoracle;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * 为 JDBC 的多线程查询数据
+ * 
+ * @author 郭鹏飞
+ * @since 2017/12/18 15.27
+ *
+ */
+public class JDBCThread {
+
+	/*
+	 * 定义一个方法进行
+	 */
+	public void muilQueryForThread() {
+		new Thread(new Runnable() {
+			public void run() {
+				// 获取到数据库的连接
+				Connection connection = JDBCUtil.jdbcCon();
+				//
+				if (connection != null) {
+					Long startTime = System.currentTimeMillis();// 开始时间
+					String sql = "select id from t_teacher where t_name='" + ""
+							+ "' and t_password='" + "" + "'";// SQL语句
+					String id = null;
+					try {
+						Statement stmt = connection.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);// 获取结果集
+						if (rs.next()) {
+							id = rs.getString("id");
+						}
+						connection.commit();
+						stmt.close();
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					Long end = System.currentTimeMillis();
+					System.out.println(" -------- " + "   开始时间:" + startTime
+							+ "  结束时间:" + end + "  用时:" + (end - startTime)
+							+ "ms");
+
+				}
+			}
+		});
+	}
+}
